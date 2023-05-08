@@ -1,5 +1,14 @@
 #!/bin/bash
 
-docker build -t oring/edge-ems-deploy-client:develop $1
+docker build $*
 docker image prune -f
-trivy image --format template --template "`curl -sL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl`" -o $1/report.html oring/edge-ems-deploy-client:develop
+
+while getopts ":t:" opt
+do
+  case $opt in
+    t)
+      tag=$OPTARG;;
+  esac
+done
+
+trivy image --format template --template "`curl -sL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl`" -o ${!#}/report_`date +%Y%m%d%H%M%S`.html $tag
