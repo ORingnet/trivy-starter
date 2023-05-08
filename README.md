@@ -16,7 +16,6 @@ chmod +x trivy.sh
 # Usage
 ```
 ./trivy.sh [DOCKER_BUILD_OPTIONS] PROJECT_PATH
-```
 
 DOCKER_BUILD_OPTIONS:
       --add-host list           Add a custom host-to-IP mapping (host:ip)
@@ -38,15 +37,15 @@ DOCKER_BUILD_OPTIONS:
       --ssh stringArray         SSH agent socket or keys to expose to the build (only if BuildKit enabled) (format: default|<id>[=<socket>|<key>[,<key>]])
   -t, --tag list                Name and optionally a tag in the 'name:tag' format
       --target string           Set the target build stage to build.
+```
 
 The report will be in PROJECT_PATH.
 
 # Example
 ## 冷氣施工平台
 ### 前端
-```
-./trivy.sh -t oring/edge-ems-deploy-client --build-arg REACT_APP_BASE_URL=https://api-ems-oringnet.fetnet.net --build-arg REACT_APP_S3_IMAGE_BASE_URL=https://api-ems-oringnet.fetnet.net --file <PROJECT_PATH>/Dockerfile.dev <PROJECT_PATH>
-```
+```./trivy.sh -t oring/edge-ems-deploy-client --build-arg REACT_APP_BASE_URL=https://api-ems-oringnet.fetnet.net --build-arg REACT_APP_S3_IMAGE_BASE_URL=https://api-ems-oringnet.fetnet.net --file <PROJECT_PATH>/Dockerfile.dev <PROJECT_PATH>```
+
 ### 後端
 ```
 ./trivy.sh -t oring/edge-ems-deploy-client:develop <PROJECT_PATH>
